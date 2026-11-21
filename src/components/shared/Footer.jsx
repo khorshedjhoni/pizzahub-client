@@ -99,7 +99,7 @@ export default function Footer() {
                 </svg>
               </a>
 
-              {/* Instagram SVG */}
+             
               <a
                 href="https://instagram.com"
                 target="_blank"
