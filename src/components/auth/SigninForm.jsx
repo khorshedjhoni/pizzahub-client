@@ -92,7 +92,7 @@ export default function SigninForm() {
       <GoogleButton label="Sign in with Google" />
 
       <p className="text-center text-sm text-muted-foreground">
-        if you have an account?{" "}
+        Don't have an account?{" "}
         <Link href="/signup" className="font-medium text-red-600 hover:underline">
           Sign Up
         </Link>
