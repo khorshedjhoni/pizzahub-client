@@ -3,12 +3,15 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MapPin, Store, Sparkles } from "lucide-react";
+import Image from "next/image";
 
 export default function PizzaCard({ item }) {
   return (
     <Card className="flex h-full flex-col overflow-hidden border bg-card transition-shadow hover:shadow-md">
       <div className="relative h-48 w-full overflow-hidden bg-muted">
-        <img
+        <Image
+          width={300}
+          height={200}
           src={item.image}
           alt={item.name}
           className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
