@@ -4,11 +4,24 @@ import { jwt } from "better-auth/plugins";
 import { nextCookies } from "better-auth/next-js";
 import { MongoClient } from "mongodb";
 
-const client = new MongoClient(process.env.MONGO_URI);
-const db = client.db(process.env.DB_NAME || "pizzaHubDB");
+function getDb() {
+  const uri = process.env.MONGO_URI;
+  if (!uri) {
+    throw new Error("Missing MONGO_URI environment variable");
+  }
+
+  const globalForMongo = globalThis;
+  const client = globalForMongo._mongoClient ?? new MongoClient(uri);
+
+  if (process.env.NODE_ENV !== "production") {
+    globalForMongo._mongoClient = client;
+  }
+
+  return client.db(process.env.DB_NAME || "pizzaHubDB");
+}
 
 export const auth = betterAuth({
-  database: mongodbAdapter(db),
+  database: mongodbAdapter(getDb()),
   emailAndPassword: {
     enabled: true,
     minPasswordLength: 6,
@@ -25,7 +38,7 @@ export const auth = betterAuth({
         type: "string",
         required: false,
         defaultValue: "customer",
-        input: true, // Allows selecting "customer" or "vendor" on signup
+        input: true,
       },
       subscriptionPlan: {
         type: "string",
@@ -52,15 +65,13 @@ export const auth = betterAuth({
         input: false,
       },
       phone: { type: "string", required: false, defaultValue: "", input: true },
-      
-bio: { type: "string", required: false, defaultValue: "", input: true },
+      bio: { type: "string", required: false, defaultValue: "", input: true },
     },
   },
   databaseHooks: {
     user: {
       create: {
         before: async (user) => {
-          // Security: Prevent anyone from registering as "admin" publicly
           const allowedRoles = ["customer", "vendor"];
           const safeRole = allowedRoles.includes(user.role) ? user.role : "customer";
           return {
