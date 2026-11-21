@@ -20,8 +20,11 @@ function getDb() {
   return client.db(process.env.DB_NAME || "pizzaHubDB");
 }
 
+const authUrl = process.env.BETTER_AUTH_URL;
+
 export const auth = betterAuth({
   database: mongodbAdapter(getDb()),
+  ...(authUrl ? { baseURL: authUrl } : {}),
   emailAndPassword: {
     enabled: true,
     minPasswordLength: 6,
@@ -73,7 +76,9 @@ export const auth = betterAuth({
       create: {
         before: async (user) => {
           const allowedRoles = ["customer", "vendor"];
-          const safeRole = allowedRoles.includes(user.role) ? user.role : "customer";
+          const safeRole = allowedRoles.includes(user.role)
+            ? user.role
+            : "customer";
           return {
             data: {
               ...user,
@@ -86,5 +91,13 @@ export const auth = betterAuth({
       },
     },
   },
-  plugins: [jwt(), nextCookies()],
+  plugins: [
+    jwt({
+      jwt: {
+        ...(authUrl ? { issuer: authUrl, audience: authUrl } : {}),
+        expirationTime: "7d",
+      },
+    }),
+    nextCookies(),
+  ],
 });
