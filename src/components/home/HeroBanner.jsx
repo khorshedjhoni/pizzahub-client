@@ -7,103 +7,78 @@ import { Flame, Pizza } from "lucide-react";
 
 export default function HeroBanner() {
   return (
-    <section className="relative overflow-hidden border-b bg-gradient-to-br from-amber-50 via-orange-50/75 to-rose-50/70 py-16 text-foreground dark:border-zinc-800/80 dark:from-zinc-950 dark:via-stone-950 dark:to-neutral-950 sm:py-24">
-      {/* Matching warm radial & ambient gradients */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full bg-gradient-to-br from-orange-400/20 via-amber-300/15 to-transparent blur-3xl dark:from-orange-600/15 dark:via-red-600/10 dark:to-transparent"
-      />
-      <motion.div
-        aria-hidden="true"
-        animate={{ scale: [1, 1.08, 1], opacity: [0.55, 0.85, 0.55] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute -right-16 top-1/2 h-[480px] w-[480px] -translate-y-1/2 rounded-full bg-gradient-to-tr from-red-500/20 via-orange-500/20 to-amber-400/20 blur-3xl dark:from-red-600/25 dark:via-orange-500/15 dark:to-amber-500/15"
-      />
+    <section className="relative overflow-hidden border-b bg-stone-950 py-12 text-white dark:border-zinc-800/80 sm:py-16">
+      {/* Animated full-bleed background image */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <motion.img
+          src="/pizza.jpg"
+          alt="Wood-fired pepperoni pizza slice"
+          initial={{ scale: 1.04, opacity: 0.9 }}
+          animate={{ scale: [1.04, 1.09, 1.04], opacity: 1 }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+          className="h-full w-full object-cover object-right sm:object-center will-change-transform"
+        />
 
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
-        {/* Left column: Copy & CTAs */}
+        {/* Readability scrim: strong on left for text, open on right for pizza */}
+        <div className="absolute inset-0 bg-black/50 lg:bg-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/95 via-zinc-950/75 to-transparent dark:from-black/95 dark:via-black/75 dark:to-black/15" />
+        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/75 via-transparent to-zinc-950/40" />
+      </div>
+
+      {/* Foreground two-column layout */}
+      <div className="relative z-20 mx-auto grid max-w-7xl grid-cols-1 items-end gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
+        {/* Left side: Headline, description & CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="space-y-6 lg:col-span-5"
+          transition={{ duration: 0.45, ease: "easeOut" }}
+          className="space-y-5 lg:col-span-6"
         >
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-orange-200/90 bg-white/85 px-3.5 py-1.5 text-xs font-semibold text-red-700 shadow-xs backdrop-blur-xs dark:border-orange-500/25 dark:bg-zinc-900/90 dark:text-amber-300">
-            <Flame className="h-3.5 w-3.5 text-red-600 dark:text-orange-400" />
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-orange-400/30 bg-zinc-900/80 px-3.5 py-1.5 text-xs font-semibold text-amber-300 shadow-xs backdrop-blur-xs">
+            <Flame className="h-3.5 w-3.5 text-orange-400" />
             Stone-Baked &amp; Delivered Hot
           </span>
 
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl xl:text-6xl leading-[1.08]">
+          <h1 className="text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl xl:text-6xl">
             Hot &amp; Fresh Pizza{" "}
-            <span className="bg-gradient-to-r from-red-600 via-orange-500 to-amber-500 bg-clip-text text-transparent dark:from-red-500 dark:via-orange-400 dark:to-amber-300">
+            <span className="bg-gradient-to-r from-red-400 via-orange-400 to-amber-300 bg-clip-text text-transparent">
               Delivered to Your Door
             </span>
           </h1>
 
-          <p className="max-w-lg text-base leading-relaxed text-muted-foreground dark:text-zinc-300 sm:text-lg">
+          <p className="max-w-lg text-base leading-relaxed text-zinc-200 sm:text-lg">
             Explore top-rated neighborhood pizzerias, customize your feast, and
             track your delivery from oven to doorstep.
           </p>
 
-          <div className="flex flex-wrap items-center gap-3 pt-2">
+          <div className="flex flex-wrap items-center gap-3 pt-1">
             <Button
               nativeButton={false}
               size="lg"
-              className="bg-gradient-to-r from-red-600 to-orange-600 text-white shadow-lg shadow-red-600/20 hover:from-red-700 hover:to-orange-700"
+              className="bg-gradient-to-r from-red-600 to-orange-600 text-white shadow-lg shadow-red-600/25 hover:from-red-700 hover:to-orange-700"
               render={<Link href="/menu">Explore Pizza Menu</Link>}
             />
             <Button
               nativeButton={false}
               variant="outline"
               size="lg"
-              className="border-orange-200/90 bg-white/80 backdrop-blur-xs hover:bg-white dark:border-zinc-700/90 dark:bg-zinc-900/85 dark:text-zinc-100 dark:hover:bg-zinc-800"
+              className="border-white/25 bg-zinc-900/75 text-white backdrop-blur-xs hover:bg-zinc-800/90 hover:text-white"
               render={<Link href="/signup">Become a Vendor</Link>}
             />
           </div>
         </motion.div>
 
-        {/* Right column: Gradient-matched bordered pizza showcase with motion */}
+        {/* Right side: Caption placed below the pizza slice area */}
         <motion.div
-          initial={{ opacity: 0, x: 24 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.65, ease: "easeOut" }}
-          className="relative flex items-center justify-center lg:col-span-7"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+          className="flex items-start lg:col-span-6 lg:justify-end"
         >
-          <motion.div
-            animate={{ y: [0, -8, 0], rotate: [-0.6, 0.8, -0.6] }}
-            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-            className="relative w-full max-w-2xl rounded-3xl bg-gradient-to-br from-amber-300/50 via-orange-400/35 to-red-500/40 p-[1.5px] shadow-xl shadow-orange-950/10 dark:from-amber-400/35 dark:via-orange-500/25 dark:to-red-600/35 dark:shadow-black/60"
-          >
-            <div className="relative overflow-hidden rounded-[22px] bg-gradient-to-br from-amber-50 via-orange-50/70 to-zinc-950 dark:from-zinc-900 dark:via-stone-950 dark:to-black">
-              <img
-                src="/pizza.jpg"
-                alt=""
-                aria-hidden="true"
-                className="aspect-[16/10] w-full object-cover sm:aspect-[16/9]"
-              />
-
-              {/* Subtle edge blending gradients matching banner & border */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-amber-950/45 via-transparent to-amber-100/15 dark:from-zinc-950/75 dark:via-transparent dark:to-orange-500/10"
-              />
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-amber-50/35 via-transparent to-orange-500/10 dark:from-zinc-950/55 dark:via-transparent dark:to-amber-500/10"
-              />
-
-              {/* Floating corner pill with subtle motion */}
-              <motion.div
-                aria-hidden="true"
-                animate={{ y: [0, 4, 0] }}
-                transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}
-                className="pointer-events-none absolute bottom-3.5 left-3.5 flex items-center gap-2 rounded-full border border-amber-300/60 bg-white/85 px-3.5 py-1.5 text-xs font-medium text-stone-800 shadow-md backdrop-blur-md dark:border-amber-400/25 dark:bg-zinc-900/85 dark:text-amber-200"
-              >
-                <Pizza className="h-3.5 w-3.5 text-red-600 dark:text-amber-400" />
-                <span>Wood-Fired Classic &amp; Signature Slices</span>
-              </motion.div>
-            </div>
-          </motion.div>
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-zinc-950/75 px-4 py-2 text-xs font-medium text-amber-200 shadow-md backdrop-blur-md">
+            <Pizza className="h-3.5 w-3.5 text-orange-400" />
+            <span>Wood-Fired Classic &amp; Signature Slices</span>
+          </div>
         </motion.div>
       </div>
     </section>
