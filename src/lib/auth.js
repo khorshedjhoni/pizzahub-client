@@ -6,18 +6,20 @@ import { MongoClient } from "mongodb";
 
 function getDb() {
   const uri = process.env.MONGO_URI;
+
   if (!uri) {
     throw new Error("Missing MONGO_URI environment variable");
   }
 
   const globalForMongo = globalThis;
-  const client = globalForMongo._mongoClient ?? new MongoClient(uri);
 
-  if (process.env.NODE_ENV !== "production") {
-    globalForMongo._mongoClient = client;
+  if (!globalForMongo._mongoClient) {
+    globalForMongo._mongoClient = new MongoClient(uri);
   }
 
-  return client.db(process.env.DB_NAME || "pizzaHubDB");
+  return globalForMongo._mongoClient.db(
+    process.env.DB_NAME || "pizzaHubDB"
+  );
 }
 
 const authUrl = process.env.BETTER_AUTH_URL;
