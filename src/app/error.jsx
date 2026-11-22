@@ -11,7 +11,7 @@ export default function GlobalError({ error, reset }) {
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4 px-4 text-center">
       <h2 className="text-2xl font-bold text-red-600">
-        Something went wrong
+        Something went wrong!
       </h2>
       <p className="max-w-md text-sm text-muted-foreground">
         {error?.message || "An unexpected error occurred while rendering this page."}
