@@ -16,7 +16,7 @@ export function normalizeUser(user) {
   };
 }
 
-/** GET /users — searchable user directory for admins. */
+
 export async function getUsers(params = {}) {
   const query = new URLSearchParams();
   for (const [key, value] of Object.entries(params)) {
@@ -29,7 +29,7 @@ export async function getUsers(params = {}) {
   return asArray(payload, ["users"]).map(normalizeUser);
 }
 
-/** GET /users/:id — a single profile. */
+
 export async function getProfile(userId) {
   const payload = await safeRequest(
     `/users/${encodeURIComponent(userId)}`,
@@ -39,7 +39,7 @@ export async function getProfile(userId) {
   return normalizeUser(payload?.data || payload?.user || payload);
 }
 
-/** GET /users/vendors — vendor directory used by admin screens. */
+
 export async function getVendors(params = {}) {
   return getUsers({ ...params, role: "vendor" });
 }
