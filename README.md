@@ -14,9 +14,9 @@
 
 | Resource | Link |
 | :--- | :--- |
-| **Live Website** | `https://your-pizzahub-live-url.vercel.app` |
-| **Client GitHub Repository** | `https://github.com/khorshedjhoni/<your-client-repo>` |
-| **Server GitHub Repository** | `https://github.com/khorshedjhoni/<your-server-repo>` |
+| **Live Website** | `https://pizzahub-demo.vercel.app/` |
+| **Client GitHub Repository** | `https://github.com/khorshedjhoni/pizzahub-server` |
+| **Server GitHub Repository** | `https://github.com/khorshedjhoni/pizzahub-client` |
 
 ---
 
@@ -77,14 +77,14 @@ Authentication and authorization are enforced on the server for every private ro
 ## 🛠️ Technology Stack & NPM Packages
 
 ### Frontend (Next.js App Router)
-* **Core Framework & UI:** `next`, `react`, `react-dom`, `tailwindcss`, `shadcn/ui` (Radix/UI primitives), `lucide-react`, `framer-motion` / `motion`, `sonner`[cite: 1.2]
-* **Auth & Utilities:** `better-auth` (add your exact client packages from `package.json`)[cite: 1.2]
+* **Core Framework & UI:** `next`, `react`, `react-dom`, `tailwindcss`, `shadcn/ui` (Radix/UI primitives), `lucide-react`, `framer-motion` / `motion`, `sonner`
+* **Auth & Utilities:** `better-auth`
 
 ### Backend (Express.js & MongoDB)
-* **Core Server & Database:** `express`, `mongodb`, `cors`, `dotenv`[cite: 1.2]
-* **Auth, Security & Payments:** `better-auth`, `@better-auth/mongo-adapter`, `jsonwebtoken` / `jose`, `stripe`[cite: 1.2]
+* **Core Server & Database:** `express`, `mongodb`, `cors`, `dotenv`
+* **Auth, Security & Payments:** `better-auth`, `@better-auth/mongo-adapter`, `jsonwebtoken` / `jose`, `stripe`
 
-> **Tip:** Replace the package list above with the exact dependencies from your `client/package.json` and `server/package.json` before submitting.
+
 
 ---
 
