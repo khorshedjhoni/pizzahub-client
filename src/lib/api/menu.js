@@ -299,7 +299,7 @@ export async function getMenuItemReviews(id) {
   return asArray(payload, ["reviews"]);
 }
 
-/** Client-side helper used by ReviewSection. */
+/** Client-side helper used by ReviewSection. to fetch */
 export async function fetchMenuItemReviews(id) {
   try {
     const response = await fetch(
