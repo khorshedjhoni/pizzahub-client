@@ -276,7 +276,7 @@ export async function getMenuItems(params = {}) {
   return list.map(normalizeMenuItem);
 }
 
-/** GET /menu/:id — a single item with vendor details. */
+
 export async function getMenuItem(id) {
   const payload = await safeRequest(`/menu/${encodeURIComponent(id)}`, {}, null);
   const item =
@@ -289,7 +289,7 @@ export async function getMenuItem(id) {
   return normalizeMenuItem(item);
 }
 
-/** GET /menu/:id/reviews — ratings and comments. */
+
 export async function getMenuItemReviews(id) {
   const payload = await safeRequest(
     `/menu/${encodeURIComponent(id)}/reviews`,
