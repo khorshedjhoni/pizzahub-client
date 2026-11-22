@@ -314,7 +314,7 @@ export async function fetchMenuItemReviews(id) {
   }
 }
 
-/** POST /menu/:id/reviews — client-side helper used by ReviewSection. */
+
 export async function postMenuItemReview(id, review, token) {
   return apiRequest(`/menu/${encodeURIComponent(id)}/reviews`, {
     method: "POST",
@@ -323,7 +323,7 @@ export async function postMenuItemReview(id, review, token) {
   });
 }
 
-/** GET /menu/vendor/:vendorId — everything owned by a vendor. */
+
 export async function getVendorMenuItems(vendorId, token) {
   const payload = await safeRequest(
     `/menu/vendor/${encodeURIComponent(vendorId)}`,
@@ -335,7 +335,7 @@ export async function getVendorMenuItems(vendorId, token) {
   );
 }
 
-/** GET /admin/menu — full catalogue for moderation. */
+
 export async function getAdminMenuItems(params = {}, token) {
   const query = new URLSearchParams();
   for (const [key, value] of Object.entries(params)) {
