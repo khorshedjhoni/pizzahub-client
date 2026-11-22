@@ -38,44 +38,46 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-3 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="flex items-center gap-2 text-2xl font-bold tracking-tight text-red-600"
+          className="flex shrink-0 items-center gap-1.5 sm:gap-2 text-lg sm:text-2xl font-bold tracking-tight text-red-600 whitespace-nowrap"
         >
-          <Pizza className="h-7 w-7 text-orange-500" />
+          <Pizza className="h-5 w-5 sm:h-7 sm:w-7 shrink-0 text-orange-500" />
           <span>PizzaHub</span>
         </Link>
 
-        <nav className="flex items-center gap-4 sm:gap-6">
+        <nav className="flex items-center gap-2.5 sm:gap-6 min-w-0">
           <Link
             href="/"
-            className="text-sm font-medium hover:text-red-600 transition-colors"
+            className="text-xs sm:text-sm font-medium hover:text-red-600 transition-colors whitespace-nowrap"
           >
             Home
           </Link>
           <Link
             href="/menu"
-            className="text-sm font-medium hover:text-red-600 transition-colors"
+            className="text-xs sm:text-sm font-medium hover:text-red-600 transition-colors whitespace-nowrap"
           >
-            Browse Menu
+            <span className="sm:hidden">Menu</span>
+            <span className="hidden sm:inline">Browse Menu</span>
           </Link>
 
           {!isPending && user && (
             <Link
               href={dashboardHref}
-              className="hidden sm:inline-block text-sm font-medium hover:text-red-600 transition-colors"
+              className="hidden sm:inline-block text-sm font-medium hover:text-red-600 transition-colors whitespace-nowrap"
             >
               Dashboard
             </Link>
           )}
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex shrink-0 items-center gap-1 sm:gap-2.5">
           <Button
             type="button"
             variant="ghost"
             size="icon"
+            className="h-8 w-8 sm:h-9 sm:w-9 shrink-0"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             aria-label="Toggle theme"
           >
@@ -84,24 +86,27 @@ export default function Navbar() {
           </Button>
 
           {isPending ? (
-            <div className="h-8 w-20 animate-pulse rounded-md bg-muted" />
+            <div className="h-8 w-16 sm:w-20 animate-pulse rounded-md bg-muted shrink-0" />
           ) : user ? (
             <DropdownMenu>
               <DropdownMenuTrigger
                 render={
                   <button
                     type="button"
-                    className="flex items-center gap-2 rounded-full border p-1 pr-3 hover:bg-muted transition-colors"
+                    className="flex shrink-0 items-center gap-2 rounded-full border p-1 sm:pr-3 hover:bg-muted transition-colors"
                   />
                 }
               >
                 <Avatar className="h-7 w-7">
-  <AvatarImage src={user?.image || undefined} alt={user?.name || "User"} />
-  <AvatarFallback className="bg-red-100 text-red-700 text-xs font-semibold">
-    {user?.name?.charAt(0)?.toUpperCase() || "U"}
-  </AvatarFallback>
-</Avatar>
-                <span className="hidden md:inline text-sm font-medium">
+                  <AvatarImage
+                    src={user?.image || undefined}
+                    alt={user?.name || "User"}
+                  />
+                  <AvatarFallback className="bg-red-100 text-red-700 text-xs font-semibold">
+                    {user?.name?.charAt(0)?.toUpperCase() || "U"}
+                  </AvatarFallback>
+                </Avatar>
+                <span className="hidden md:inline text-sm font-medium whitespace-nowrap">
                   {user.name}
                 </span>
               </DropdownMenuTrigger>
@@ -143,17 +148,18 @@ export default function Navbar() {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <div className="flex items-center gap-2">
+            <div className="flex shrink-0 items-center gap-1 sm:gap-2">
               <Button
                 nativeButton={false}
                 variant="ghost"
                 size="sm"
+                className="h-8 px-2 sm:px-3 text-xs sm:text-sm whitespace-nowrap"
                 render={<Link href="/signin">Sign In</Link>}
               />
               <Button
                 nativeButton={false}
                 size="sm"
-                className="bg-red-600 hover:bg-red-700 text-white"
+                className="h-8 px-2.5 sm:px-3 text-xs sm:text-sm whitespace-nowrap bg-red-600 hover:bg-red-700 text-white"
                 render={<Link href="/signup">Sign Up</Link>}
               />
             </div>
