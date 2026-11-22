@@ -1,4 +1,4 @@
-// src/app/(dashboard)/dashboard/customer/orders/page.jsx
+
 import { headers } from "next/headers";
 import { API_BASE_URL, getAuthHeaders } from "@/lib/api/config";
 import OrdersTable from "@/components/dashboard/customer/OrdersTable";
