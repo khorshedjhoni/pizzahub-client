@@ -6,10 +6,7 @@ import {
 } from "@/lib/api/config";
 import { itemId, itemPrice } from "@/lib/utils";
 
-/**
- * Six curated pizzas used to keep the home page and menu browsable while
- * the API is being connected. Real items always win when available.
- */
+
 export const demoMenuItems = [
   {
     id: "demo-margherita",
