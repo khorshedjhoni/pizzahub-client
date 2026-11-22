@@ -57,7 +57,7 @@ export function normalizeOrder(order) {
   };
 }
 
-/** GET /orders/customer — the signed-in customer's orders. */
+
 export async function getCustomerOrders(userId) {
   const suffix = userId ? `?userId=${encodeURIComponent(userId)}` : "";
   const payload = await safeRequest(
@@ -68,7 +68,7 @@ export async function getCustomerOrders(userId) {
   return asArray(payload, ["orders"]).map(normalizeOrder);
 }
 
-/** GET /orders/vendor — orders placed with the signed-in vendor. */
+
 export async function getVendorOrders(vendorId) {
   const suffix = vendorId ? `?vendorId=${encodeURIComponent(vendorId)}` : "";
   const payload = await safeRequest(
@@ -79,7 +79,7 @@ export async function getVendorOrders(vendorId) {
   return asArray(payload, ["orders"]).map(normalizeOrder);
 }
 
-/** GET /orders — administrative overview of every order. */
+
 export async function getAllOrders(params = {}) {
   const query = new URLSearchParams();
   for (const [key, value] of Object.entries(params)) {
