@@ -50,7 +50,7 @@ export default function DashboardSidebar({ user }) {
     <aside className="hidden w-64 shrink-0 flex-col justify-between border-r bg-card md:flex">
       <div className="p-4 space-y-6">
         <div className="flex items-center gap-2 px-2">
-          {/* <Pizza className="h-6 w-6 text-red-600" /> */}
+         
          <div className="px-2">
   <Link href="/" className="group flex items-center gap-2">
     <Pizza className="h-6 w-6 shrink-0 text-red-600 transition-transform duration-200 group-hover:scale-105" />
