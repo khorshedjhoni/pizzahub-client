@@ -38,7 +38,7 @@ function normalizeStats(payload) {
   return { stats, chart };
 }
 
-/** GET /stats/customer — overview cards + order chart. */
+
 export async function getCustomerStats(userId) {
   const suffix = userId ? `?userId=${encodeURIComponent(userId)}` : "";
   const payload = await safeRequest(
@@ -49,7 +49,7 @@ export async function getCustomerStats(userId) {
   return normalizeStats(payload);
 }
 
-/** GET /stats/vendor — vendor overview cards + chart. */
+
 export async function getVendorStats(vendorId) {
   const suffix = vendorId ? `?vendorId=${encodeURIComponent(vendorId)}` : "";
   const payload = await safeRequest(
@@ -60,7 +60,7 @@ export async function getVendorStats(vendorId) {
   return normalizeStats(payload);
 }
 
-/** GET /stats/admin — platform-wide overview cards + charts. */
+
 export async function getAdminStats() {
   const payload = await safeRequest(`/stats/admin`, { auth: true }, null);
   return normalizeStats(payload);
