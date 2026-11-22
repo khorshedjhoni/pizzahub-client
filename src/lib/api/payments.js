@@ -20,7 +20,7 @@ export function normalizeTransaction(transaction) {
   };
 }
 
-/** GET /payments/transactions — read-only Stripe log for admins. */
+
 export async function getTransactions(params = {}) {
   const query = new URLSearchParams();
   for (const [key, value] of Object.entries(params)) {
