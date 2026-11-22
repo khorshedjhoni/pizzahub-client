@@ -261,7 +261,7 @@ export function normalizeMenuItem(item) {
   };
 }
 
-/** GET /menu — public catalogue with optional filters. */
+
 export async function getMenuItems(params = {}) {
   const query = new URLSearchParams();
   for (const [key, value] of Object.entries(params)) {
