@@ -1,96 +1,433 @@
 # 🍕 PizzaHub — Pizza Ordering & Delivery Platform
 
-[![Next.js](https://img.shields.io/badge/Next.js-App%20Router-black?logo=nextdotjs)](https://nextjs.org/)
-[![Express.js](https://img.shields.io/badge/Express.js-REST%20API-lightgrey?logo=express)](https://expressjs.com/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-Database-47A248?logo=mongodb)](https://www.mongodb.com/)
-[![Stripe](https://img.shields.io/badge/Stripe-Checkout%20%26%20Webhooks-635BFF?logo=stripe)](https://stripe.com/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-ShadCN%20UI-06B6D4?logo=tailwindcss)](https://tailwindcss.com/)
+<p align="center">
+  <strong>A Full-Stack, Role-Based Pizza Ordering & Restaurant Management Platform</strong>
+</p>
 
-**PizzaHub** is a full-stack, role-based pizza ordering and delivery platform connecting **Customers**, **Vendors (Restaurant Owners)**, and **Administrators**. Customers browse pizzas, filter by category or location, view item details, and place orders; vendors manage menus, incoming orders, and Stripe-powered Premium subscriptions; and admins oversee users, menu approvals, and read-only subscription transaction logs.
+<p align="center">
+  Discover local pizza restaurants, explore delicious menus, place orders, manage restaurant operations, and grow your business with Premium subscriptions.
+</p>
+
+<p align="center">
+  <a href="https://pizzahub-demo.vercel.app/">🌐 Live Website</a> •
+  <a href="https://github.com/khorshedjhoni/pizzahub-client">💻 Client Repository</a> •
+  <a href="https://github.com/khorshedjhoni/pizzahub-server">⚙️ Server Repository</a>
+</p>
+
+## 📌 Project Overview
+
+**PizzaHub** is a full-stack pizza ordering and delivery platform designed to connect customers with local pizza restaurants.
+
+The platform provides three different user roles: **Customer, Vendor (Restaurant Owner), and Admin**. Each role has dedicated permissions, dashboard functionality, and management capabilities.
+
+Customers can discover nearby restaurants, browse pizza menus, search and filter menu items, view product details, place delivery orders, and track their order status.
+
+Vendors can create restaurant profiles, publish and manage menu items, receive customer orders, accept or reject orders, and upgrade their accounts to Premium subscriptions.
+
+Administrators have centralized control over platform users, menu item approvals, restaurant activities, and subscription transactions.
+
+PizzaHub is built as a functional business-oriented application with authentication, role-based authorization, REST APIs, MongoDB data management, JWT verification, image hosting, and Stripe-powered vendor subscriptions.
+
+### 🎯 Project Goals
+
+- Build a real-world multi-role food ordering platform.
+- Implement secure authentication and authorization.
+- Develop reusable and maintainable frontend components.
+- Create RESTful APIs with Express.js and MongoDB.
+- Implement advanced searching, filtering, and sorting.
+- Integrate Stripe Checkout and secure webhook verification.
+- Deliver a responsive and professional user experience.
+- Apply server-side validation, resource ownership checks, and error handling.
 
 ---
 
-## 🌐 Links & Repositories
+## 🌐 Live Project & Repositories
 
-| Resource | Link |
-| :--- | :--- |
-| **Live Website** | `https://pizzahub-demo.vercel.app/` |
-| **Client GitHub Repository** | `https://github.com/khorshedjhoni/pizzahub-server` |
-| **Server GitHub Repository** | `https://github.com/khorshedjhoni/pizzahub-client` |
+| Resource             | URL                                                                                                  |
+| -------------------- | ---------------------------------------------------------------------------------------------------- |
+| 🌐 Live Website      | [https://pizzahub-demo.vercel.app/](https://pizzahub-demo.vercel.app/)                               |
+| 💻 Client Repository | [https://github.com/khorshedjhoni/pizzahub-client](https://github.com/khorshedjhoni/pizzahub-client) |
+| ⚙️ Server Repository | [https://github.com/khorshedjhoni/pizzahub-server](https://github.com/khorshedjhoni/pizzahub-server) |
 
 ---
 
 ## ✨ Key Features
 
-### 🔐 Authentication & Role-Based Access Control
-* Powered by **Better Auth** (with MongoDB adapter) and **Google OAuth**, alongside **JWT** verification and role-based middleware on protected backend routes.
-* Public registration supports **Customer** and **Vendor** accounts with password validation (minimum 6 characters, uppercase and lowercase letters); admin access is assigned securely.
-* Strict server-side role and resource-ownership checks prevent unauthorized cross-role dashboard access or self-promotion.
+### 🔐 1. Authentication & Authorization
 
-### 🏠 Storefront, Menu Discovery & Order Flow
-* **Home Page:** Pizza-themed banner, **Featured Menu Items** (approved and active items), **Pizza Categories** (*Classic Pizzas*, *Vegetarian Pizzas*, *Meat Lovers*, *Specialty / Gourmet Pizzas*, *Sides & Appetizers*, *Beverages & Desserts*), **Why Choose PizzaHub?**, and an additional highlight section enhanced with smooth **Framer Motion** animations.
-* **Browse Menu & Item Details (`/menu/[id]`):** Search by name, filter by category and location, view item details and pricing, and place orders with delivery date, delivery address, and special instructions.
-* **Order Guardrails:** Prevents vendors from ordering their own items, blocks admins from placing customer orders, and prevents duplicate active orders for the same item and delivery date.
+- Better Auth integration with MongoDB adapter.
+- Email and password authentication.
+- Google OAuth authentication.
+- Password validation with minimum 6 characters, including uppercase and lowercase letters.
+- Customer and Vendor registration.
+- Secure Admin account management.
+- JWT generation and verification.
+- Role-based dashboard access.
+- Protected frontend routes and backend APIs.
+- Session persistence and authentication-aware navigation.
+- Blocked-user access restrictions.
 
-### 🏪 Role-Specific Dashboards
-* **Customer Dashboard:** Order statistics (total, pending, accepted, rejected) and **My Orders** with order tracking and cancellation for pending orders[cite: 1.2].
-* **Vendor Dashboard:** Menu and order overview, **Add Menu Item** (with **ImgBB** image upload and Free plan limit of 3 active items vs. Premium unlimited), **My Menu Items** (CRUD & availability), **Customer Orders** (accept/reject pending orders once), and **Subscription** upgrade flow[cite: 1.2].
-* **Admin Dashboard:** Platform KPIs, **Manage Users** (search, filter by role, block/unblock), **Manage Menu Items** (approve, reject, status updates, delete), and **Transactions** (read-only vendor subscription payment history)[cite: 1.2].
+### 🍕 2. Public Storefront & Pizza Discovery
 
-### 💳 Stripe Vendor Subscription & Webhooks
-* Vendors initiate a **Stripe Checkout** session to upgrade from **Free** to **Premium** (unlimited active menu items, Premium badge, and featured placement)[cite: 1.2].
-* Premium access and `transactions` records are finalized via **Stripe webhook verification**, never trusted solely from the client redirect URL[cite: 1.2].
+- Professional pizza-themed landing page.
+- Responsive navigation and footer.
+- Hero banner with menu exploration CTA.
+- Featured menu items dynamically loaded from MongoDB.
+- Six pizza and food categories:
+  - Classic Pizzas
+  - Vegetarian Pizzas
+  - Meat Lovers
+  - Specialty / Gourmet Pizzas
+  - Sides & Appetizers
+  - Beverages & Desserts
+- Restaurant and vendor information.
+- Responsive menu cards.
+- Item details with descriptions, images, pricing, and location.
+- Loading, empty, and error states.
+
+### 🔎 3. Advanced Menu Search, Filtering & Sorting
+
+Customers can discover menu items through server-side filtering and sorting.
+
+Supported features:
+
+- Search menu items by name.
+- Filter by pizza category.
+- Filter by restaurant location.
+- Sort prices from low to high.
+- Sort prices from high to low.
+- Display only approved and active menu items publicly.
+- Validate and normalize query parameters on the backend.
+
+Example API requests:
+
+```http
+GET /menu-items?search=margherita
+GET /menu-items?category=Classic%20Pizzas
+GET /menu-items?location=Dhaka
+GET /menu-items?sortBy=price&order=asc
+GET /menu-items?sortBy=price&order=desc
+```
+
+The backend builds MongoDB filters and sorting rules based on validated query parameters rather than relying exclusively on frontend filtering.
+
+
+
+## ⚡ Challenge Implementation Details
+
+This section explains the implementation of the assignment's main technical challenges.
+
+### Challenge 1: Advanced Menu Search & Price Sorting
+
+Menu discovery is implemented using API query parameters and server-side MongoDB filtering.
+
+**Supported query parameters:**
+
+| Parameter  | Purpose               | Example                      |
+| ---------- | --------------------- | ---------------------------- |
+| `search`   | Search by item name   | `?search=margherita`         |
+| `category` | Filter by category    | `?category=Classic%20Pizzas` |
+| `location` | Filter by location    | `?location=Dhaka`            |
+| `sortBy`   | Select sorting field  | `?sortBy=price`              |
+| `order`    | Sorting direction     | `?order=asc`                 |
+| `status`   | Filter by item status | `?status=approved`           |
+
+**Sorting examples:**
+
+```http
+GET /menu-items?sortBy=price&order=asc
+GET /menu-items?sortBy=price&order=desc
+```
+
+
+### Challenge 2: JWT & Protected API Middleware
+
+JWT verification protects sensitive backend operations.
+
+**Implementation flow:**
+
+```text
+Client Request
+      |
+      v
+Authorization Header
+      |
+      v
+JWT Verification
+      |
+      v
+User Authentication
+      |
+      v
+Account Status Check
+      |
+      v
+Role Authorization
+      |
+      v
+Resource Ownership Check
+      |
+      v
+Controller / Database Operation
+      |
+      v
+API Response
+```
+
+Invalid or expired tokens receive a `401 Unauthorized` response.
+
+Authenticated users without the required role receive a `403 Forbidden` response.
+
+Frontend role checks are used for navigation and user experience, but backend authorization remains the actual security boundary.
+
+### Challenge 3: Stripe Checkout & Webhook Verification
+
+Vendor subscriptions use Stripe Checkout.
+
+The backend creates checkout sessions and verifies webhook signatures before updating subscription information.
+
+**Payment flow:**
+
+```text
+Vendor Requests Premium
+          |
+          v
+Backend Validates Vendor
+          |
+          v
+Stripe Checkout Session
+          |
+          v
+Stripe Payment Processing
+          |
+          v
+Stripe Webhook Event
+          |
+          v
+Signature Verification
+          |
+          v
+Payment Confirmation
+          |
+          v
+MongoDB Transaction Record
+          |
+          v
+Premium Subscription Activation
+```
+
+The frontend success page is not treated as proof of payment.
+
+Premium access is granted only after a valid payment confirmation from Stripe.
 
 ---
-## 🧩 Implementation Notes: Challenge Requirements
 
-### 1. Advanced Menu Search & Price Sorting
-To deliver responsive menu discovery across both storefront and browse views, search, filtering, and price sorting are driven by explicit API query parameters and structured MongoDB query construction rather than client-only filtering:
+## 🛠️ Technology Stack
 
-* **Supported Query Parameters:**
-  * `search`: Case-insensitive text matching against menu item names and descriptions (e.g., `search=margherita`).
-  * `category`: Exact or normalized category filtering (e.g., `category=Classic%20Pizzas`).
-  * `location`: Area or city filtering for local restaurant availability (e.g., `location=Dhaka`).
-  * `sortBy` & `order`: Supports sorting menu items by price in ascending (`sortBy=price&order=asc`) or descending (`sortBy=price&order=desc`) order, with safe fallback defaults when omitted or invalid.
-  * `status`: Enforces visibility rules (such as restricting public listings to approved/active items while allowing role-scoped views in dashboards).
-* **Request & Execution Flow:**
-  1. The Next.js client synchronizes filter inputs, search terms, and sort selection with URL/API query parameters and triggers loading/empty states cleanly.
-  2. The Express route handler normalizes and validates query parameters on the server before assembling the MongoDB filter and sort specification.
-  3. MongoDB executes the filtered and price-sorted query (`1` for ascending, `-1` for descending) and returns a consistent payload to the frontend.
+### Frontend
 
-### 2. JWT & Role-Based Middleware Flow
-Authentication and authorization are enforced on the server for every private route so frontend UI checks or client-supplied user IDs/roles can never be trusted:
+| Technology     | Purpose                        |
+| -------------- | ------------------------------ |
+| Next.js 16     | React framework and App Router |
+| React 19       | Component-based UI             |
+| JavaScript     | Application programming        |
+| Tailwind CSS 4 | Utility-first styling          |
+| ShadCN UI      | Reusable UI components         |
+| Radix UI       | Accessible UI primitives       |
+| Base UI        | Additional UI components       |
+| Lucide React   | Icons                          |
+| Framer Motion  | Animations                     |
+| Recharts       | Dashboard charts               |
+| Better Auth    | Authentication client          |
+| Sonner         | Toast notifications            |
+| React Compiler | React optimization support     |
 
-* **Token Verification Middleware (`verifyToken`):**
-  1. Extracts the JWT from the `Authorization: Bearer <token>` header (or authenticated session/cookie flow).
-  2. Verifies the token signature and expiration using the server-side secret; rejects missing, malformed, or expired tokens with `401 Unauthorized`.
-  3. Loads/attaches the verified user context to `req.user` and checks account restrictions (such as blocked user status) before allowing access to protected resources.
-* **Role & Ownership Authorization Middleware (`authorizeRole` & Resource Checks):**
-  1. Evaluates `req.user.role` (`customer`, `vendor`, or `admin`) against allowed roles for the endpoint; returns `403 Forbidden` if unauthorized.
-  2. Verifies record ownership or business rules on mutations (e.g., vendors can only manage their own menu items and orders; customers can only cancel their own pending orders; subscription activation relies on verified Stripe webhook events; admin transaction records remain read-only).
+### Frontend NPM Packages
 
-### 3. Professional UI/UX & Visual Consistency
-* Designed a cohesive pizza-themed interface combining warm reds, oranges, and cream surfaces with dark-mode support, accessible contrast, and responsive layouts across mobile, tablet, and desktop viewports.
-* Standardized typography, spacing, uniform card sizing, and ShadCN UI components across public pages and role-based dashboards, paired with Framer Motion transitions, loading states, custom error handling, and `sonner` toast feedback.
+```text
+next
+react
+react-dom
+better-auth
+@base-ui/react
+@radix-ui/react-alert-dialog
+@radix-ui/react-avatar
+@radix-ui/react-checkbox
+@radix-ui/react-dialog
+@radix-ui/react-dropdown-menu
+@radix-ui/react-label
+@radix-ui/react-select
+@radix-ui/react-separator
+@radix-ui/react-slot
+@radix-ui/react-switch
+@radix-ui/react-tabs
+@radix-ui/react-tooltip
+tailwindcss
+@tailwindcss/postcss
+@tailwindcss/turbopack
+shadcn
+lucide-react
+framer-motion
+recharts
+sonner
+clsx
+class-variance-authority
+tailwind-merge
+date-fns
+next-themes
+stripe
+```
 
+### Backend
 
-## 🛠️ Technology Stack & NPM Packages
+| Technology             | Purpose                         |
+| ---------------------- | ------------------------------- |
+| Node.js                | JavaScript runtime              |
+| Express.js             | REST API framework              |
+| MongoDB                | NoSQL database                  |
+| MongoDB Node.js Driver | Database connectivity           |
+| JOSE                   | JWT verification                |
+| Stripe                 | Subscription payment processing |
+| CORS                   | Cross-origin request handling   |
+| dotenv                 | Environment variable management |
 
-### Frontend (Next.js App Router)
-* **Core Framework & UI:** `next`, `react`, `react-dom`, `tailwindcss`, `shadcn/ui` (Radix/UI primitives), `lucide-react`, `framer-motion` / `motion`, `sonner`
-* **Auth & Utilities:** `better-auth`
+### Backend NPM Packages
 
-### Backend (Express.js & MongoDB)
-* **Core Server & Database:** `express`, `mongodb`, `cors`, `dotenv`
-* **Auth, Security & Payments:** `better-auth`, `@better-auth/mongo-adapter`, `jsonwebtoken` / `jose`, `stripe`
+```text
+express
+mongodb
+jose
+stripe
+cors
+dotenv
+```
 
+### External Services
 
+| Service       | Purpose                      |
+| ------------- | ---------------------------- |
+| MongoDB Atlas | Cloud database               |
+| Better Auth   | Authentication               |
+| Google OAuth  | Social login                 |
+| ImgBB         | Menu image hosting           |
+| Stripe        | Vendor subscription payments |
+| Vercel        | Frontend deployment          |
+| Render        | Backend deployment           |
 
 ---
 
-## 🚀 Installation & Running Locally
 
-### 1. Clone Both Repositories
+## 🚀 Installation & Local Development
+
+### Prerequisites
+
+Install the following before running the application:
+
+- Node.js (LTS recommended)
+- npm
+- Git
+- MongoDB Atlas account
+- Google Cloud OAuth credentials
+- ImgBB API key
+- Stripe account for subscription testing
+
+### 1. Clone the Repositories
+
 ```bash
-git clone [https://github.com/khorshedjhoni/](https://github.com/khorshedjhoni/)<your-client-repo>.git pizzahub-client
-git clone [https://github.com/khorshedjhoni/](https://github.com/khorshedjhoni/)<your-server-repo>.git pizzahub-server
+git clone https://github.com/khorshedjhoni/pizzahub-client.git
+
+git clone https://github.com/khorshedjhoni/pizzahub-server.git
+```
+
+### 2. Install Client Dependencies
+
+```bash
+cd pizzahub-client
+
+npm install
+```
+
+### 3. Install Server Dependencies
+
+Open another terminal:
+
+```bash
+cd pizzahub-server
+
+npm install
+```
+
+### 4. Configure Environment Variables
+
+Create `.env.local` inside the client repository and `.env` inside the server repository.
+
+Use the environment variable names documented below and match them with the actual application configuration.
+
+### 5. Run the Backend
+
+```bash
+cd pizzahub-server
+
+npm run dev
+```
+
+The Express server runs on the configured backend port.
+
+### 6. Run the Frontend
+
+Open another terminal:
+
+```bash
+cd pizzahub-client
+
+npm run dev
+```
+
+Open:
+
+```text
+http://localhost:3000
+```
+
+### 7. Production Build
+
+To check the frontend production build:
+
+```bash
+cd pizzahub-client
+
+npm run build
+```
+
+To run the production frontend:
+
+```bash
+npm start
+```
+
+---
+
+
+## 👨‍💻 Developer
+
+**Khorshed Alam**
+
+Full-Stack Web Developer | Learning and Building with the MERN Stack
+
+Interested in building modern web applications, solving programming problems, and developing secure, scalable, user-friendly software.
+
+### Connect
+
+- GitHub: [https://github.com/khorshedjhoni](https://github.com/khorshedjhoni)
+
+---
+
+
+
+<p align="center">
+  <strong>🍕 PizzaHub — Discover. Order. Enjoy.</strong>
+</p>
+
+<p align="center">
+  Fresh Pizza • Local Restaurants • Better Experiences
+</p>
