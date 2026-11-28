@@ -31,7 +31,7 @@ export default function PizzaCard({
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/users/me/favorites/${item._id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/users/me/favorites/${item._id}`,
         {
           method: "POST",
           credentials: "include", // sends JWT / session cookie if cookie-based
